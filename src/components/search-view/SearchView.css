@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+body {
+    background: #FAFAFA;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+}
+
+.columnTwo{
+    padding-top: 50%;
+    grid-column: 2;
+}
+
+.block{
+    padding-top: 35%;
+    grid-column: 2;
+    text-align: center;
+}
+
+h1{
+    font-size: 60px;
+    font-family: 'Merriweather', serif;
+}
+
+.footer{
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 10px;
+}
