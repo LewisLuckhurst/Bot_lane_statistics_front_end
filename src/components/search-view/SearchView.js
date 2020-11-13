@@ -1,12 +1,12 @@
 import React from "react";
 import Search from "./Search"
 
-function SearchView() {
+function SearchView(props) {
     return (
         <div className="wrapper">
             <div className="block">
                 <h1>Bot Lane Statistics</h1>
-                <Search/>
+                <Search updateSummonerObject={props.updateSummoner}/>
             </div>
 
             <div className="footer">

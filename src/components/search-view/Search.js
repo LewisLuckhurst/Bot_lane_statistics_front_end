@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
@@ -21,18 +21,22 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function SearchBar() {
+function SearchBar(props) {
     const classes = useStyles();
+    const [summonerName, setSummonerName] = useState("");
+
     return (
         <Paper className={classes.root}>
             <InputBase
                 className={classes.input}
                 placeholder="Enter summoner name"
                 inputProps={{"aria-label": "search force graph"}}
+                onChange={(e) => setSummonerName(e.target.value)}
             />
             <IconButton
                 className={classes.iconButton}
                 aria-label="search"
+                onClick={() => props.updateSummonerObject(summonerName)}
             >
                 <SearchIcon/>
             </IconButton>
