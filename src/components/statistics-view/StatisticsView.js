@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import "./StatisticsView.css"
-import logo from './4789.png';
+import Button from "@material-ui/core/Button";
 
-function StatisticsView({summoner}) {
+function StatisticsView({summoner, update, updateInProgress}) {
     const [supportOnly, setSupportOnly] = useState(false);
 
     let championList = []
@@ -26,8 +26,26 @@ function StatisticsView({summoner}) {
     generateChampion()
     generateSupports()
 
+    function getButton() {
+        if (updateInProgress) {
+            return (
+                <Button variant="contained" size="large" disabled>
+                    Update in progress
+                </Button>
+            )
+        }
+
+        return (
+            <Button variant="contained" size="large" color="secondary"
+                    onClick={() => update(summoner.summonerName)}>Update</Button>
+        )
+    }
+
     return (
         <>
+            <div className="buttonContainer">
+                {getButton()}
+            </div>
             <div className="wrapper">
                 <WinLossRatio summoner={summoner}/>
                 <Selector onlySupport={setSupportOnly}/>
@@ -134,8 +152,9 @@ function Champion({summoner, championName}) {
         <div className="card">
             <div className="container">
                 <div className="imgContainer">
-                    <img src={"http://ddragon.leagueoflegends.com/cdn/10.23.1/img/champion/" + championName + ".png"}
-                         alt={"champion icon"}/>
+                    <img
+                        src={"http://ddragon.leagueoflegends.com/cdn/10.23.1/img/champion/" + getChampName(championName) + ".png"}
+                        alt={"champion icon"}/>
                 </div>
                 <div className="text">
                     <b>{championName}</b>
@@ -188,6 +207,25 @@ function Supports({summoner, adcName}) {
     )
 }
 
+function getChampName(championName) {
+    if (championName === "Kai'Sa") {
+        return "Kaisa"
+    }
+
+    if (championName === "Miss Fortune") {
+        return "MissFortune"
+    }
+
+    if (championName === "Kha'Zix") {
+        return "Khazix"
+    }
+
+    if (championName === "Vel'Koz") {
+        return "Velkoz"
+    }
+    return championName
+}
+
 function Support({supportName, wins, losses, winRate, onlySupport}) {
     let style = {width: winRate}
 
@@ -201,8 +239,9 @@ function Support({supportName, wins, losses, winRate, onlySupport}) {
     let body = (
             <>
                 <div className="imgContainer">
-                    <img src={"http://ddragon.leagueoflegends.com/cdn/10.23.1/img/champion/" + supportName + ".png"}
-                         alt={"profile icon"}/>
+                    <img
+                        src={"http://ddragon.leagueoflegends.com/cdn/10.23.1/img/champion/" + getChampName(supportName) + ".png"}
+                        alt={"profile icon"}/>
                 </div>
                 <div className="text">
                     <b>{supportName}</b>
