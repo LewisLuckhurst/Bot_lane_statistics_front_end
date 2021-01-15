@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Bot lane statistics front end
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## What is this?
+
+This is the front end for my league of legends project that allows you to see what you win % you have as adc and what your winrate % is with each support.
 
 ## Available Scripts
 
